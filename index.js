@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { query } = require("express-validator");
 require("dotenv").config();
-//
+
 const db = require("./database/models");
 
 mongoose.connect(process.env.MONGODB_URI, {
