@@ -32,7 +32,6 @@ api.get("/", (req, res) => {
 });
 
 api.get("/movies", async (req, res) => {
-  console.log("Return movies");
   try {
     if (req.query.title) {
       const result = await db.Movie.find({ title: req.query.title });
@@ -47,7 +46,7 @@ api.get("/movies", async (req, res) => {
         .skip((page - 1) * perPage)
         .limit(+perPage)
         .exec();
-
+      console.log("return movies!!!!!");
       return res.status(200).json(movies);
     }
   } catch (err) {
