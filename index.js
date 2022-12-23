@@ -41,6 +41,7 @@ api.get("/", (req, res) => {
 });
 
 api.get("/movies", async (req, res) => {
+  console.log("Return movies");
   try {
     if (req.query.title) {
       const result = await db.Movie.find({ title: req.query.title });
