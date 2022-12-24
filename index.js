@@ -40,9 +40,7 @@ api.get("/movies", async (req, res) => {
       const page = req.query.page;
       const perPage = req.query.perPage;
 
-      const movies = await db.Movie.find({
-        poster: { $exists: true },
-      })
+      const movies = await db.Movie.find()
         .skip((page - 1) * perPage)
         .limit(+perPage)
         .exec();
