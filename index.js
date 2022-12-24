@@ -7,7 +7,7 @@ const { query } = require("express-validator");
 require("dotenv").config();
 
 const db = require("./database/models");
-
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -18,7 +18,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let api = express.Router();
 app.use("/api", api);
-
 mongoose.connection
   .on("error", (err) => {
     console.log("MongoDB connection error", err);
@@ -40,7 +39,9 @@ api.get("/movies", async (req, res) => {
       const page = req.query.page;
       const perPage = req.query.perPage;
 
-      const movies = await db.Movie.find()
+      const movies = await db.Movie.find({
+        poster: { $exists: true },
+      })
         .skip((page - 1) * perPage)
         .limit(+perPage)
         .exec();

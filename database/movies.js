@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
-  movieId: Number,
+  _id: String,
   plot: String,
   genres: [String],
   runtime: Number,
@@ -13,6 +13,7 @@ const movieSchema = new Schema({
   languages: [String],
   released: Date,
   directors: [String],
+  writers: [String],
   rated: String,
   poster: String,
   awards: {
@@ -35,6 +36,7 @@ const movieSchema = new Schema({
       numReviews: Number,
       meter: Number,
     },
+    dvd: Date,
     critic: {
       rating: Number,
       numReviews: Number,
@@ -43,7 +45,9 @@ const movieSchema = new Schema({
     fresh: Number,
     rotten: Number,
     lastUpdated: Date,
+    consensus: String,
+    production: String,
   },
 });
 
-module.exports = Movie = mongoose.model("movies", movieSchema);
+module.exports = mongoose.model("movies", movieSchema, "Movie");
