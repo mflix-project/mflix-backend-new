@@ -4,6 +4,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { query } = require("express-validator");
+var HTTP_PORT = process.env.PORT || 8080;
+
 require("dotenv").config();
 
 const db = require("./database/models");
@@ -108,6 +110,6 @@ api.get("/theaters/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log(`Server is running on PORT 5000`);
+app.listen(HTTP_PORT, () => {
+  console.log(`Server is running on PORT 8080`);
 });
