@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const db = require("./database/models");
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://127.0.0.1:27017/sample_mflix", {
+mongoose.connect("mongodb://localhost:27017/sample_mflix", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -38,8 +38,6 @@ api.get("/movies", async (req, res) => {
     } else {
       const page = req.query.page;
       const perPage = req.query.perPage;
-      console.log(page);
-      console.log(perPage);
       const movies = await db.Movie.find({
         poster: { $exists: true },
       })
@@ -114,6 +112,6 @@ api.get("/theaters/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log(`Server is running on PORT 5000`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on PORT ${process.env.PORT}`);
 });
