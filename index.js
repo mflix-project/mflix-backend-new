@@ -44,10 +44,6 @@ api.get("/movies", async (req, res) => {
         .skip((page - 1) * perPage)
         .limit(+perPage)
         .exec();
-      console.log("return movies!!!!!");
-      console.log(movies);
-      console.log(page);
-      console.log(perPage);
       return res.status(200).json(movies);
     }
   } catch (err) {
