@@ -38,7 +38,8 @@ api.get("/movies", async (req, res) => {
     } else {
       const page = req.query.page;
       const perPage = req.query.perPage;
-
+      console.log(page);
+      console.log(perPage);
       const movies = await db.Movie.find({
         poster: { $exists: true },
       })
@@ -47,6 +48,8 @@ api.get("/movies", async (req, res) => {
         .exec();
       console.log("return movies!!!!!");
       console.log(movies);
+      console.log(page);
+      console.log(perPage);
       return res.status(200).json(movies);
     }
   } catch (err) {
