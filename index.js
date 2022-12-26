@@ -7,13 +7,16 @@ const { query } = require("express-validator");
 var HTTP_PORT = process.env.PORT || 8080;
 
 require("dotenv").config();
-
 const db = require("./database/models");
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://127.0.0.1:27017/sample_mflix", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://Jun:Jun0928!@cluster0.tuord.mongodb.net/sample_mflix",
+  {
+    // mongoose.connect("mongodb://127.0.0.1:27017/sample_mflix", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.use(cors());
 app.use(bodyParser.json());
