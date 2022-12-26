@@ -20,4 +20,4 @@ theaterSchema = new Schema(
   { typeKey: "$type" }
 );
 
-module.exports = mongoose.model("theaters", theaterSchema, "Theater");
+module.exports = Theater = mongoose.model("theaters", theaterSchema);
