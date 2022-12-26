@@ -5,13 +5,22 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { query } = require("express-validator");
 require("dotenv").config();
-//
+
 const db = require("./database/models");
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://127.0.0.1:27017/sample_mflix", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect("mongodb://127.0.0.1:27017/sample_mflix", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => {
+    app.listen(5000, () => {
+      console.log(`Server is running on PORT 5000`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -108,6 +117,6 @@ api.get("/theaters/:id", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on PORT ${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server is running on PORT ${process.env.PORT}`);
+// });
